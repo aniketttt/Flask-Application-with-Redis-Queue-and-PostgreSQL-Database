@@ -1,97 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>README</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2, h3 {
-            color: #152744;
-        }
-        code {
-            background-color: #f4f4f4;
-            padding: 2px 5px;
-            border-radius: 4px;
-        }
-        pre {
-            background: #f4f4f4;
-            padding: 10px;
-            border-radius: 6px;
-            overflow-x: auto;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Project Title</h1>
-        <p>A brief description of your project.</p>
-        
-        <h2>Table of Contents</h2>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#getting-started">Getting Started</a></li>
-            <li><a href="#prerequisites">Prerequisites</a></li>
-            <li><a href="#installation">Installation</a></li>
-            <li><a href="#usage">Usage</a></li>
-            <li><a href="#built-with">Built With</a></li>
-            <li><a href="#contributing">Contributing</a></li>
-            <li><a href="#license">License</a></li>
-        </ul>
+# Form Submission with Redis Queue and PostgreSQL
 
-        <h2 id="about">About</h2>
-        <p>This project is a Flask web application that allows users to submit data via a form, which is then stored in a PostgreSQL database. The application also provides a view to display the submitted data in a table format. It uses Redis as a message broker to queue form submissions.</p>
+This project is a simple web application for submitting data through a form, storing it in a Redis queue, and then inserting it into a PostgreSQL database. It includes a feature to view the submitted data in a table format.
 
-        <h2 id="getting-started">Getting Started</h2>
-        <p>These instructions will help you get a copy of the project up and running on your local machine for development and testing purposes.</p>
+## Features
 
-        <h3 id="prerequisites">Prerequisites</h3>
-        <ul>
-            <li>Docker</li>
-            <li>Docker Compose</li>
-            <li>Git</li>
-        </ul>
+- Submit data via a web form
+- Store data in a Redis queue
+- Insert data into PostgreSQL database
+- View submitted data in a table
 
-        <h3 id="installation">Installation</h3>
-        <p>1. Clone the repository:</p>
-        <pre><code>git clone https://github.com/your-username/your-repository.git</code></pre>
-        <p>2. Navigate to the project directory:</p>
-        <pre><code>cd your-repository</code></pre>
-        <p>3. Build and start the Docker containers:</p>
-        <pre><code>docker-compose up --build</code></pre>
-        <p>This will build the Docker images and start the containers for the Flask app, Redis, and PostgreSQL.</p>
+## Technologies Used
 
-        <h2 id="usage">Usage</h2>
-        <p>Once the Docker containers are up and running, you can access the application at <code>http://localhost:5000</code>.</p>
-        <p>The main page provides a form to submit data. After submission, you will be redirected to a success page. You can view the submitted data by clicking on the "View Submitted Data" link.</p>
+- Python
+- Flask
+- Redis
+- PostgreSQL
+- Docker
 
-        <h2 id="built-with">Built With</h2>
-        <ul>
-            <li><a href="https://flask.palletsprojects.com/">Flask</a> - The web framework used</li>
-            <li><a href="https://www.postgresql.org/">PostgreSQL</a> - Database</li>
-            <li><a href="https://redis.io/">Redis</a> - Message broker</li>
-            <li><a href="https://www.docker.com/">Docker</a> - Containerization</li>
-        </ul>
+## Project Structure
+<pre>
+.
+├── Dockerfile
+├── Dockerfile.worker
+├── app.py
+├── worker.py
+├── requirements.txt
+├── requirements-worker.txt
+├── templates
+│   ├── index.html
+│   ├── view_data.html
+│   └── success.html
+└── static
+    └── style.css
+        </pre>
 
-        <h2 id="contributing">Contributing</h2>
-        <p>Contributions are welcome! Please read the <a href="CONTRIBUTING.md">contributing guidelines</a> for more details.</p>
+## Setup Instructions
 
-        <h2 id="license">License</h2>
-        <p>This project is licensed under the MIT License - see the <a href="LICENSE.md">LICENSE.md</a> file for details.</p>
-    </div>
-</body>
-</html>
+### Prerequisites
+
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+### Steps
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/your-repo-name.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd your-repo-name
+    ```
+3. Build and run the Docker containers:
+    ```bash
+    docker-compose up --build
+    ```
+4. Access the application in your web browser at [http://localhost:5000](http://localhost:5000)
+
+## Application Endpoints
+
+- `/` - Form submission page
+- `/submit` - Form submission handler (POST)
+- `/success` - Success message page
+- `/view_data` - View submitted data
+
+## Code Overview
+
+### app.py
+
+Main Flask application file. Contains routes for form submission, success message, and viewing data.
+
+### worker.py
+
+Worker script that processes the Redis queue and inserts data into the PostgreSQL database.
+
+### templates/
+
+Directory containing HTML templates for the Flask application.
+
+### static/
+
+Directory containing static files such as CSS for the Flask application.
+
+## Contact
+
+If you have any questions or need further assistance, feel free to contact me at [your-email@example.com](mailto:your-email@example.com).
+
+
+
