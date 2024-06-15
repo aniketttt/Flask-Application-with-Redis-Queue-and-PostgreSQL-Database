@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-worker
+  template:
+    metadata:
+      labels:
+        app: flask-worker
+    spec:
+      containers:
+      - name: flask-worker
+        image: aniket0808/flask_worker:latest
+        env:
+        - name: POSTGRES_DB
+          value: "mydb"
+        - name: POSTGRES_USER
+          value: "admin"
+        - name: POSTGRES_PASSWORD
+          value: "admin"
+        - name: REDIS_HOST
+          value: "redis"
