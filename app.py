@@ -22,7 +22,9 @@ def init_db():
                 CREATE TABLE IF NOT EXISTS your_table_name (
                     id SERIAL PRIMARY KEY,
                     name VARCHAR(100),
-                    email VARCHAR(100)
+                    email VARCHAR(100),
+                    age INT,
+                    city VARCHAR(100)
                 )
             ''')
             conn.commit()
@@ -41,10 +43,31 @@ def index():
 def submit():
     data = {
         'name': request.form['name'],
-        'email': request.form['email']
+        'email': request.form['email'],
+        'age': request.form['age'],
+        'city': request.form['city']
     }
     redis_client.rpush('form_queue', json.dumps(data))
-    return redirect(url_for('index'))
+    return redirect(url_for('success'))
+
+@app.route('/success')
+def success():
+    return render_template('success.html')
+
+@app.route('/view_data')
+def view_data():
+    conn = psycopg2.connect(
+        dbname='mydb',
+        user='admin',
+        password='admin',
+        host='postgres'
+    )
+    cursor = conn.cursor()
+    cursor.execute('SELECT name, email, age, city FROM your_table_name')
+    rows = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return render_template('view_data.html', rows=rows)
 
 if __name__ == '__main__':
     init_db()
