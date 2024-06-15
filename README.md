@@ -18,7 +18,7 @@
 <p>Follow these steps to set up and run the project:</p>
     <ol>
         <li>Clone this repository:</li>
-        <pre><code>git clone https://github.com/aniketttt/BasicForm-with-redis-postgres.git</code></pre>
+        <pre><code>git clone https://github.com/aniketttt/Flask-Application-with-Redis-Queue-and-PostgreSQL-Database.git</code></pre>
         <li>Navigate to the project directory:</li>
         <pre><code>cd app-repo</code></pre>
         <li>Build and start the Docker containers:</li>
