@@ -1,13 +1,20 @@
-FROM python:3.9-alpine
+# Use the base Python image.
+FROM python:3.8-slim
 
-WORKDIR /app
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-COPY requirements.txt requirements.txt
-RUN apk add --no-cache postgresql-libs \
-    && apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev \
-    && pip install --no-cache-dir -r requirements.txt \
-    && apk --purge del .build-deps
+WORKDIR /code
 
-COPY . .
+# Install dependencies
+COPY requirements.txt /code/
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy
+COPY . /code/
+
+# Expose port
+EXPOSE 5000
 
 CMD ["python", "app.py"]
