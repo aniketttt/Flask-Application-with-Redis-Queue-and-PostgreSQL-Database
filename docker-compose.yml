@@ -1,32 +1,41 @@
 version: '3.2'
 
 services:
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
-    depends_on:
-      - redis
-      - postgres
-
-  worker:
-    build:
-      context: .
-      dockerfile: Dockerfile.worker
-    depends_on:
-      - redis
-      - postgres
-
-  redis:
-    image: "redis:6.2-alpine"
-
   postgres:
-    image: "postgres:13-alpine"
+    image: postgres:alpine
     environment:
       POSTGRES_DB: mydb
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:alpine
+
+  flask_app:
+    image: aniket0808/flask_app:latest
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      FLASK_ENV: development
+
+  worker:
+    image: aniket0808/flask_worker:latest
+    depends_on:
+      - flask_app
+      - redis
+      - postgres
+
+  nginx:
+    image: nginx:alpine
     ports:
-      - "5432:5432"
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - flask_app
+
+volumes:
+  postgres_data:
