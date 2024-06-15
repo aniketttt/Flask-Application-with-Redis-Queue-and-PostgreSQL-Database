@@ -22,7 +22,8 @@
         <li>Navigate to the project directory:</li>
         <pre><code>cd app-repo</code></pre>
         <li>Build and start the Docker containers:</li>
-        <pre><code>docker-compose build<br>docker-compose up</code></pre>
+        <pre><code>docker-compose build
+docker-compose up</code></pre>
     </ol>
 
 <h2>🚀 Usage</h2>
