@@ -46,7 +46,7 @@ This project is a simple web application for submitting data through a form, sto
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/your-repo-name.git
+    git clone https://github.com/aniketttt/testing.git
     ```
 2. Navigate to the project directory:
     ```bash
@@ -56,7 +56,7 @@ This project is a simple web application for submitting data through a form, sto
     ```bash
     docker-compose up --build
     ```
-4. Access the application in your web browser at [http://localhost:5000](http://localhost:5000)
+4. Access the application in your web browser at http://localhost:5000
 
 ## Application Endpoints
 
