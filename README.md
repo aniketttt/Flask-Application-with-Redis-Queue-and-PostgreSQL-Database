@@ -69,7 +69,15 @@ docker-compose up</code></pre>
         <li><strong>worker:</strong> Worker service that processes the Redis queue.</li>
         <li><strong>nginx:</strong> NGINX reverse proxy service.</li>
     </ul>
-
+    
+<h3>Workflow Overview</h3>
+<ol>
+ <li><strong>Form Submission:</strong> The user submits data via an HTML form.</li>
+ <li><strong>Queue the Data:</strong> The Flask application places the submitted data into a Redis queue.</li>
+ <li><strong>Worker Processing:</strong> A separate Flask worker process retrieves the data from the Redis queue and saves it to the PostgreSQL database.</li>
+ <li><strong>Success Feedback:</strong> The user receives feedback that their data has been successfully submitted.</li>
+</ol>
+    
 <h2>✍️ License</h2>
 <p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for more details.</p>
 
